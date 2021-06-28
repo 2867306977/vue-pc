@@ -324,13 +324,14 @@ export default {
     // 当当前页码发生变化时触发的
     handleCurrentChange(pageNo) {
       this.search({
-        pageNo,
+        pageNo, //当前页码
       });
     },
     // 当每页条数发生变化时触发的
-    handleSizeChange(pageSize) {
+    handleSizeChange(pageNo, pageSize) {
       this.search({
         pageSize,
+        pageNo,
       });
     },
   },
