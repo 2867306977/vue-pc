@@ -4,6 +4,9 @@ import Home from "../views/Home";
 import Search from "../views/Search";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import Detail from "../views/Detail";
+import AddCartSuccess from "../views/AddCartSuccess";
+import ShopCart from "../views/ShopCart";
 
 Vue.use(VueRouter);
 
@@ -40,6 +43,21 @@ const routes = [
     meta: {
       isFooterHide: true,
     },
+  },
+  {
+    name: "Detail",
+    path: "/detail/:id",
+    component: Detail,
+  },
+  {
+    name: "AddCartSuccess",
+    path: "/addCartSuccess",
+    component: AddCartSuccess,
+  },
+  {
+    name: "ShopCart",
+    path: "/shopCart",
+    component: ShopCart,
   },
 ];
 

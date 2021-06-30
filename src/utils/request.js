@@ -1,6 +1,7 @@
 // 封装一个请求方法 设置拦截器
 import axios from "axios";
 import NProgress from "nprogress";
+import getUserTempId from "./uuid";
 NProgress.configure({ showSpinner: false });
 const status = {
   401: "未授权",
@@ -25,10 +26,16 @@ const request = axios.create({
       处理响应结果
     触发then/catch的回调
 */
+//外面的js只解析一次, 但是一刷新就会重新解析,所以需要把id存储到storage上
+// const uuid = uuidv4();
 //触发请求拦截器
 request.interceptors.request.use(
   //接收config,返回config
   config => {
+    // config.headers.xxx = xxx 发送请求携带请求头
+    //userTempId是服务器规定的
+    // const uuid = uuidv4();//不能在这个地方定义id,因为请求会发送多次,然后每次id都不一样
+    config.headers.userTempId = getUserTempId();
     //进度条开始
     NProgress.start();
     // console.log(config); //{url: "/api/product/getBaseCategoryList", method: "get".....}
