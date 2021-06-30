@@ -4,9 +4,15 @@
       <div class="header-content w">
         <div class="header-content-left">
           <span>
-            尚品汇欢迎您！请
-            <router-link to="/login" class="login">登录</router-link>
-            <router-link to="/register">免费注册</router-link>
+            尚品汇欢迎您！
+            <div v-if="!name" style="display:inline-block">
+              <router-link to="/login" class="login">登录</router-link>
+              <router-link to="/register">免费注册</router-link>
+            </div>
+            <div v-else style="display:inline-block">
+              <span>{{name}}</span>
+              <button class="logout" @click="handleLogout">退出登录</button>
+            </div>
           </span>
         </div>
         <ul class="header-content-right">
@@ -53,6 +59,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Header",
   data() {
@@ -64,6 +71,7 @@ export default {
   //   console.log(this.$route.query);
   // },
   methods: {
+    ...mapActions("user", ["logout"]),
     toSearch() {
       const keyword = this.keyword.trim();
       const location = {
@@ -77,6 +85,21 @@ export default {
       }
       this.$router.history.push(location);
     },
+    //退出登录
+    async handleLogout() {
+      //清除localStorage数据 及本地数据
+      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
+      //发送请求退出登录 告诉服务器清除数据
+      await this.logout();
+      this.$router.history.push("/");
+    },
+  },
+  mounted() {
+    console.log(this.name);
+  },
+  computed: {
+    ...mapState("user", ["name"]),
   },
 };
 </script>
@@ -138,4 +161,7 @@ export default {
     font-size: 12px;
   }
 }
+// .logout {
+
+// }
 </style>

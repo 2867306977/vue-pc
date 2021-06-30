@@ -1,4 +1,4 @@
-import { reqLogin } from "../../api/user";
+import { reqLogin, reqLogout } from "../../api/user";
 // console.log(JSON.parse(localStorage.getItem("user")));
 //存储数据,locationStorage,sessionStorage中查找是否有数据,都没有则初始化数据
 const state = JSON.parse(localStorage.getItem("user")) ||
@@ -14,12 +14,21 @@ const actions = {
     commit("LOGIN", user);
     return user;
   },
+  async logout({ commit }) {
+    await reqLogout();
+    commit("LOGOUT");
+  },
 };
 const mutations = {
   LOGIN(state, user) {
     state.name = user.name;
     state.nickName = user.nickName;
     state.token = user.token;
+  },
+  LOGOUT(state) {
+    state.name = "";
+    state.nickName = "";
+    state.token = "";
   },
 };
 export default {

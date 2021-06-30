@@ -28,3 +28,9 @@ export const reqLogin = ({ phone, password }) => {
     },
   });
 };
+export const reqLogout = () => {
+  return request({
+    method: "GET",
+    url: "/user/passport/logout",
+  });
+};
