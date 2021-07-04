@@ -65,7 +65,7 @@
           <i class="summoney">￥{{totalPrice}}</i>
         </div>
         <div class="sumbtn">
-          <a class="sum-btn" href="###" target="_blank">结算</a>
+          <router-link class="sum-btn" to="/trade">结算</router-link>
         </div>
       </div>
     </div>
@@ -151,22 +151,24 @@ export default {
     //商品数量操作
     async decrement(cartInfo) {
       if (cartInfo.skuNum <= 1) return;
+      cartInfo.skuNum--;
+
       //发送请求 更新购物车数量数据
       try {
         await reqAddShopCart(cartInfo.skuId, -1);
       } catch (e) {
         console.log(e);
       }
-      cartInfo.skuNum--;
     },
     async increment(cartInfo) {
       //发送请求 更新购物车数量数据
+      cartInfo.skuNum++;
+
       try {
         await reqAddShopCart(cartInfo.skuId, 1);
       } catch (e) {
         console.log(e);
       }
-      cartInfo.skuNum++;
     },
     //删除选中商品
     delCheckedShop() {

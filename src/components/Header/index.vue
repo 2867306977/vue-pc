@@ -17,10 +17,10 @@
         </div>
         <ul class="header-content-right">
           <li>
-            <router-link to="/">我的订单</router-link>
+            <router-link to="/center">我的订单</router-link>
           </li>
           <li>
-            <router-link to="/">我的购物车</router-link>
+            <router-link to="/shopCart">我的购物车</router-link>
           </li>
           <li>
             <router-link to="/">我的尚品汇</router-link>
@@ -94,9 +94,6 @@ export default {
       await this.logout();
       this.$router.history.push("/");
     },
-  },
-  mounted() {
-    console.log(this.name);
   },
   computed: {
     ...mapState("user", ["name"]),

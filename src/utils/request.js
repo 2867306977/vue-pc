@@ -2,6 +2,7 @@
 import axios from "axios";
 import NProgress from "nprogress";
 import getUserTempId from "./uuid";
+import store from "../store";
 NProgress.configure({ showSpinner: false });
 const status = {
   401: "未授权",
@@ -35,7 +36,14 @@ request.interceptors.request.use(
     // config.headers.xxx = xxx 发送请求携带请求头
     //userTempId是服务器规定的
     // const uuid = uuidv4();//不能在这个地方定义id,因为请求会发送多次,然后每次id都不一样
+    //用户没登录 临时id
     config.headers.userTempId = getUserTempId();
+    //携带token请求头 用户登陆了
+    // const token = JSON.parse(localStorage.getItem("user")).token;
+    const token = store.state.user.token;
+    if (token) {
+      config.headers.token = token;
+    }
     //进度条开始
     NProgress.start();
     // console.log(config); //{url: "/api/product/getBaseCategoryList", method: "get".....}
