@@ -119,7 +119,7 @@
           </div>
           <Dialog title="立即支付" :visible.sync="visible" width="30%">
             <div style="text-align: center;">
-              <img :src="imgurl" />
+              <img v-lazy="imgurl" />
             </div>
             <template #footer>
               <button>支付遇到问题</button>

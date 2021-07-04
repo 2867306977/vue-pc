@@ -53,11 +53,24 @@ const routes = [
     path: "/detail/:id",
     component: Detail,
   },
+  //添加到购物车成功
   {
     name: "AddCartSuccess",
     path: "/addCartSuccess",
     component: AddCartSuccess,
+    //路由导航守卫
+    beforeEnter: (to, from, next) => {
+      //to: 去哪个路由的配置对象
+      //from: 从哪个路由配置对象来的
+      //next 必须调用,不然不会跳转下一个地址
+      if (from.name === "Detail") {
+        next(); //直接调用跳转到to的路由地址
+      } else {
+        next(from); //不是的话 从哪来回哪去
+      }
+    },
   },
+  //购物车
   {
     name: "ShopCart",
     path: "/shopCart",
@@ -68,18 +81,48 @@ const routes = [
     name: "Pay",
     path: "/pay",
     component: Pay,
+    beforeEnter: (to, from, next) => {
+      //to: 去哪个路由的配置对象
+      //from: 从哪个路由配置对象来的
+      //next 必须调用,不然不会跳转下一个地址
+      if (from.name === "Trade") {
+        next(); //直接调用跳转到to的路由地址
+      } else {
+        next(from); //不是的话 从哪来回哪去
+      }
+    },
   },
   //支付成功页面
   {
     name: "PaySuccess",
     path: "/paySuccess",
     component: PaySuccess,
+    beforeEnter: (to, from, next) => {
+      //to: 去哪个路由的配置对象
+      //from: 从哪个路由配置对象来的
+      //next 必须调用,不然不会跳转下一个地址
+      if (from.name === "Pay") {
+        next(); //直接调用跳转到to的路由地址
+      } else {
+        next(from); //不是的话 从哪来回哪去
+      }
+    },
   },
   //结算页面
   {
     name: "Trade",
     path: "/trade",
     component: Trade,
+    beforeEnter: (to, from, next) => {
+      //to: 去哪个路由的配置对象
+      //from: 从哪个路由配置对象来的
+      //next 必须调用,不然不会跳转下一个地址
+      if (from.name === "ShopCart") {
+        next(); //直接调用跳转到to的路由地址
+      } else {
+        next(from); //不是的话 从哪来回哪去
+      }
+    },
   },
   //我的订单
   {

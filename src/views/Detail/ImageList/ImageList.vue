@@ -5,7 +5,7 @@
         <!-- 更新父组件的currentImgIndex值 -->
         <!-- 点击图片 给当前图片添加类名,使用:class="{}" 当前点击的图片下标===index-->
         <img
-          :src="img.imgUrl"
+          v-lazy="img.imgUrl"
           :alt="img.imgName"
           @click="$emit('update:currentImgIndex',index)"
           :class="{active:currentImgIndex === index}"

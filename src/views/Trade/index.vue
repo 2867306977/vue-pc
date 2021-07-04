@@ -35,7 +35,7 @@
         <h5>商品清单</h5>
         <ul class="list clearFix" v-for="(detail,index) in detailArrayList" :key="index">
           <li class="detailImg">
-            <img :src="detail.imgUrl" :alt="detail.skuName" />
+            <img v-lazy="detail.imgUrl" :alt="detail.skuName" />
           </li>
           <li>
             <p>{{detail.skuName}}</p>

@@ -97,7 +97,7 @@
                   <tr v-for="(order,index) in cord.orderDetailList" :key="order.id">
                     <td width="60%">
                       <div class="typographic">
-                        <img :src="order.imgUrl" style="width:100px;height:100px" />
+                        <img v-lazy="order.imgUrl" style="width:100px;height:100px" />
                         <a href="#" class="block-text">{{order.skuName}}</a>
                         <span>x{{order.skuNum}}</span>
                         <a href="#" class="service">售后申请</a>
