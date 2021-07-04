@@ -1,16 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home";
-import Search from "../views/Search";
-import Login from "../views/Login";
-import Register from "../views/Register";
-import Detail from "../views/Detail";
-import AddCartSuccess from "../views/AddCartSuccess";
-import ShopCart from "../views/ShopCart";
-import Center from "../views/Center";
-import Pay from "../views/Pay";
-import PaySuccess from "../views/PaySuccess";
-import Trade from "../views/Trade";
+// import Home from "../views/Home";
+// import Search from "../views/Search";
+// import Login from "../views/Login";
+// import Register from "../views/Register";
+// import Detail from "../views/Detail";
+// import AddCartSuccess from "../views/AddCartSuccess";
+// import ShopCart from "../views/ShopCart";
+// import Center from "../views/Center";
+// import Pay from "../views/Pay";
+// import PaySuccess from "../views/PaySuccess";
+// import Trade from "../views/Trade";
+//路由懒加载
+//将路由组件打包成单独js,css文件,需要使用时才会加载,
+const Home = () => import(/*webpackChunkName:'Home'*/ "../views/Home");
+const Search = () => import(/*webpackChunkName:'Search'*/ "../views/Search");
+const Login = () => import(/*webpackChunkName:'Login'*/ "../views/Login");
+const Register = () =>
+  import(/*webpackChunkName:'Register'*/ "../views/Register");
+const Detail = () => import(/*webpackChunkName:'Detail'*/ "../views/Detail");
+const AddCartSuccess = () =>
+  import(/*webpackChunkName:'AddCartSuccess'*/ "../views/AddCartSuccess");
+const ShopCart = () =>
+  import(/*webpackChunkName:'ShopCart'*/ "../views/ShopCart");
+const Center = () => import(/*webpackChunkName:'Center'*/ "../views/Center");
+const Pay = () => import(/*webpackChunkName:'Pay'*/ "../views/Pay");
+const PaySuccess = () =>
+  import(/*webpackChunkName:'PaySuccess'*/ "../views/PaySuccess");
+const Trade = () => import(/*webpackChunkName:'Trade'*/ "../views/Trade");
 
 Vue.use(VueRouter);
 
